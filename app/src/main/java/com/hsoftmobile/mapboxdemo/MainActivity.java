@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
 		Button btnSimpleMap = (Button) findViewById(R.id.btn_simple_map);
 		Button btnMarkersMap = (Button) findViewById(R.id.btn_markers_map);
+		Button btnSetLocation = (Button) findViewById(R.id.btn_set_location);
+		//Button btnGetLocation = (Button) findViewById(R.id.btn_get_location);
 
 		btnSimpleMap.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -31,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View view) {
 				showActivity(MapMarkerActivity.class);
+			}
+		});
+		btnSetLocation.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				showActivity(SetLocationActivity.class);
 			}
 		});
 	}
