@@ -1,17 +1,21 @@
 package com.hsoftmobile.mapboxdemo;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.MarkerOptions;
+import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 
-public class SimpleMapActivity extends AppCompatActivity {
+public class MapMarkerActivity extends AppCompatActivity {
 
 	private Mapbox mapbox;
 	private MapView mapView;
+	private MapboxMap map;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +24,16 @@ public class SimpleMapActivity extends AppCompatActivity {
 		// Mapbox access token
 		mapbox = Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
 
-		setContentView(R.layout.activity_simple_map);
+		setContentView(R.layout.activity_map_marker);
 
-		mapView = (MapView) findViewById(R.id.map_simple);
+		mapView = (MapView) findViewById(R.id.map_marker);
 		mapView.onCreate(savedInstanceState);
 		mapView.getMapAsync(new OnMapReadyCallback() {
 			@Override
 			public void onMapReady(MapboxMap mapboxMap) {
 				// Customize map with markers, polylines, etc.
+				map = mapboxMap;
+				setupMap();
 			}
 		});
 	}
@@ -72,5 +78,24 @@ public class SimpleMapActivity extends AppCompatActivity {
 	protected void onDestroy() {
 		super.onDestroy();
 		mapView.onDestroy();
+	}
+
+	// MAP METHODS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	private void setupMap() {
+		if (map == null) return;
+		// set long click listener
+		map.setOnMapLongClickListener(new MapboxMap.OnMapLongClickListener() {
+			@Override
+			public void onMapLongClick(@NonNull LatLng point) {
+				map.clear();
+				addMarker(point, "My marker");
+			}
+		});
+	}
+
+	private void addMarker(LatLng position, String title) {
+		if (map == null) return;
+		map.addMarker(new MarkerOptions().position(position).title(title));
 	}
 }

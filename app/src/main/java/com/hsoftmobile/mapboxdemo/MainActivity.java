@@ -19,11 +19,18 @@ public class MainActivity extends AppCompatActivity {
 		thisActivity = this;
 
 		Button btnSimpleMap = (Button) findViewById(R.id.btn_simple_map);
+		Button btnMarkersMap = (Button) findViewById(R.id.btn_markers_map);
 
 		btnSimpleMap.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				showActivity(SimpleMapActivity.class);
+			}
+		});
+		btnMarkersMap.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				showActivity(MapMarkerActivity.class);
 			}
 		});
 	}
