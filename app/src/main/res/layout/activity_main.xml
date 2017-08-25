@@ -70,13 +70,13 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="Set location"/>
-		<!--
+
 		<Button
 			android:id="@+id/btn_get_location"
 			style="@style/Widget.AppCompat.Button.Colored"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="Get location"/>
-		-->
+
 	</LinearLayout>
 </android.support.constraint.ConstraintLayout>

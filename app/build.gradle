@@ -30,7 +30,7 @@ dependencies {
 	testCompile 'junit:junit:4.12'
 }
 
-// Map Box
+// Map Box dependencies
 repositories {
 	mavenCentral()
 }
